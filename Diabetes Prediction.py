@@ -44,7 +44,8 @@ def open_csv_file(path):
     return np.array(Stats), np.array(Result).reshape(-1, 1)
 
 
-file_path = "C:/Users/DELL/Downloads/Dataset.csv"
+# Example -> C:/Users/DELL/Downloads/Dataset.csv
+file_path = input("Enter the path: ")
 x, y = open_csv_file(file_path)
 
 # Determining Constants from CSV file
