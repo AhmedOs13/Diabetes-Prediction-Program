@@ -7,12 +7,6 @@
 # Data: Imported From: https://data.mendeley.com/datasets/wj9rwkp9c2/1
 # Citation: Rashid, Ahlam (2020), “Diabetes Dataset”, Mendeley Data, V1, doi: 10.17632/wj9rwkp9c2.1
 # ------------------------------------------------------------------------------------------------------
-# Algorithm: Logistic Regression, Batch Gradient Descent
-# Classification: N = Not Diabetic , P = Pre-Diabetic , Y = Diabetic
-# Number of Features: 10
-# Number of Training Examples: 1000
-# Prediction Accuracy: +80%
-# ------------------------------------------------------------------------------------------------------
 
 import csv
 import numpy as np
