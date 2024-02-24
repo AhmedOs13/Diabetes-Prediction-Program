@@ -24,6 +24,7 @@ This project implements a diabetes prediction program using logistic regression 
 
 # Features:
 - Number of Features: 10
+- AGE, Urea, Cr, HbA1c, Chol, TG, HDL, LDL, VLDL, BMI
 
 # Training Data:
 - Number of Training Examples: 1000
