@@ -17,35 +17,36 @@
 import csv
 import numpy as np
 import matplotlib.pyplot as plt
+import requests
+from io import StringIO
 
-
-def open_csv_file(path):
+def open_csv_file(url):
     # Status -> X , Result -> Y
     Stats = []
     Result = []
 
     # Open CSV file and import data
-    with open(path, newline='') as csvfile:
-        csv_reader = csv.reader(csvfile)
-        next(csv_reader)  # Skip Headers
-        for row in csv_reader:
-            stats_row = [1] + [float(z) for z in row[2:12]]
-            Stats.append(stats_row)
-            if row[12] == 'Y':  # Diabetic
-                result_val = 1.0
-            elif row[12] == 'P':  # Pre-Diabetic
-                result_val = 0.5
-            else:  # Not Diabetic
-                result_val = 0.0
-            # Add Result Value to Results list
-            Result.append(result_val)
+    response = requests.get(url)
+    csv_data = response.text
+    csv_reader = csv.reader(StringIO(csv_data))
+    next(csv_reader)  # Skip Headers
+    for row in csv_reader:
+        stats_row = [1] + [float(z) for z in row[2:12]]
+        Stats.append(stats_row)
+        if row[12] == 'Y':  # Diabetic
+            result_val = 1.0
+        elif row[12] == 'P':  # Pre-Diabetic
+            result_val = 0.5
+        else:  # Not Diabetic
+            result_val = 0.0
+        # Add Result Value to Results list
+        Result.append(result_val)
 
     # Convert lists into array
     return np.array(Stats), np.array(Result).reshape(-1, 1)
 
 
-# Example -> C:/Users/DELL/Downloads/Dataset.csv
-file_path = input("Enter the path: ")
+file_path = "https://raw.githubusercontent.com/AhmedOs13/Diabetes-Prediction-Program/main/Dataset.csv?raw=true"
 x, y = open_csv_file(file_path)
 
 # Determining Constants from CSV file
